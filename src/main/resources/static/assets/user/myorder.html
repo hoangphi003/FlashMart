@@ -1,0 +1,45 @@
+<body>
+	<div class="container" style="margin-top: 120px; ">
+		<div class="card mt-3 bg-light">
+			<table class="table table-border">
+				<thead>
+					<tr class="text-center">
+						<th class="indecor-product-price">Địa chỉ nhận</th>
+						<th class="indecor-product-quantity">Ngày mua</th>
+						<th class="indecor-product-subtotal">Trạng thái</th>
+						<th class="indecor-product-subtotal"></th>
+						<th class="indecor-product-subtotal"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in myorder" class="text-center">
+						<td class="indecor-product-price" style="padding-top: 3%;">
+							<span class="price">{{x.address}}</span>
+						</td>
+						<td class="indecor-product-quantity" style="padding-top: 3%;">
+							<span class="price">{{x.orderDate | date:'dd-MM-yyyy'}}</span>
+						</td>
+						<td class="indecor-product-subtotal" style="padding-top: 3%;">
+							<span class="price">{{x.status}}</span>
+						</td>
+						<td class="indecor-product-subtotal" style="padding-top: 2%;">
+							<a class="btn btn-outline-danger"
+								ng-if="x.status !== 'Đã hủy' && x.status !== 'Đã xác nhận'
+								&& x.status !== 'Đang giao' && x.status !== 'Đã giao'" 
+								id="cancel-order"
+								ng-click="cancel.ok(x.id)">Hủy đơn</a>
+						</td>
+						<td class="indecor-product-subtotal" style="padding-top: 2%;">
+							<a class="price btn btn-outline-primary" href="/order/detail2s/{{x.id}}">
+								<i class="fa-solid fa-magnifying-glass"></i>
+								</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</body>
+
+</html>

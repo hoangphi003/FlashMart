@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body ng-app="FlashMart" ng-controller="shopping-cart-ctrl">
+	<main class="main-content">
+		<section class="product-area product-information-area">
+			<div class="container">
+				<div class="product-information">
+					<div class="row">
+						<div class="col-lg-7">
+				<h2 class="fw-semibold">Thông tin vận chuyển</h2>
+				<div class="row mb-3 mt-4">
+					<div class="col-6">
+						<div class="mb-3">
+								<label>Order date</label>
+							<span class="form-control" style="line-height: 2.25;">{{order.order_date |
+								date:'dd-MM-yyyy'}}</span>
+						
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="mb-3">
+								<label>Trạng thái:</label>
+							<span class="form-control" style="line-height: 2.25;">{{order.status}}</span>
+						
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="mb-3">
+							<label for="">Email: </label>
+							<input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+								   placeholder="">
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="mb-3">
+							<label for="">Địa chỉ: </label>
+							<input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+								   placeholder=""  ng-model="order.address">
+						</div>
+					</div>
+
+				
+					<div class="col-12 mt-4">
+						<a class="btn btn-warning w-100" ng-click="order.purchase()">Tiến
+							hành đặt
+							hàng</a>
+					</div>
+				</div>
+
+			</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+		<script src="/assets/js/main.js"></script>
+</body>
+</html>

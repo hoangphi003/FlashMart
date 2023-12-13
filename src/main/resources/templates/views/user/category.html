@@ -1,0 +1,36 @@
+<div class="product-standard container mb-5 collections" >
+    <div class="card mt-5 border-0">
+        <h3 class="fw-bold mt-3 mb-5 text-uppercase" id="here">Sản
+            phẩm cùng loại đáng mua</h3>
+        <div class="row mb-4">
+            <div class="col-3 mb-4" ng-repeat="item in item_category">
+                <div class="card product border-0 position-relative overflow-hidden">
+                    <div class="c body">
+                        <a href="#!detail/{{ item.id }}/{{item.category.id}}">
+                            <img src="/assets/images/products/{{item.image}}" class="w-100 rounded-3 mb-2" alt="">
+                        </a>
+                        <span href="" class="text-black text-decoration-none fw-bold">{{item.productName}}</span>
+                        <span class="d-block text-light-gray">{{item.brand}}</span>
+                        <span class="d-block fw-bold">{{item.price}} VND</span>
+                        <span class="text-light-gray">{{item.description}}</span>
+                    </div>
+                    <span class="choose-size text-decoration-none">
+                        <div class="card text-dark card-item">
+                            <h6 class="fw-bolder mb-3 mt-3 mx-3 text-center">Thêm nhanh vào giỏ
+                                hàng</h6>
+                            <div class="row mt-2">
+                                <div class="col-3">
+                                    <a class="btn btn-light text-black"
+                                        href="#!detail/{{ item.id }}/{{item.category.id}}"
+                                        style="min-width:240px;border-top-left-radius: 0;border-top-right-radius: 0;">
+                                        <i class="fa-solid fa-cart-plus fs-5 py-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

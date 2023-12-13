@@ -1,0 +1,50 @@
+<body>
+    <main>
+        <div class="container collections mb-5">
+            <ul class="user mt-5 d-flex justify-content-center">
+                <div class="notthing w-75 mt-3">
+                    <h1 class="text-center mb-3" id="offcanvasBottomLabel" style="font-weight: bold">Đăng nhập</h1>
+                    <h6 style="font-weight: bold; font-size: 14px;" class="mb-3 text-center">Đăng nhập hoặc đăng ký
+                        (miễn phí)</h6>
+                    <hr style="width: 90%; margin-left: 20px;">
+                    <br>
+                    <form  ng-submit="login()" method="post">
+                        <div class="form-floating mb-3" style="margin-top: -15px;">
+                            <input type="text" class="form-control " id="email3" name="username" ng-model="form.username"
+                                ng-class="{ 'error-field': errorMessages.username }" placeholder=""
+                                style="border-radius: 30px; width: 90%; height: 50px; margin-left: 20px;" />
+                            <label for="floatingInput"
+                                style="margin-left: 25px; color: gray; margin-bottom: 25px;">USERNAME
+                                CỦA BẠN</label>
+                            <p style="color: red; margin-left: 30px" ng-show="errorMessages.email" >{{
+                                errorMessages.email }}</p>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password2" placeholder="Enter Password"
+                                name="password" ng-model="form.password"
+                                ng-class="{ 'error-field': errorMessages.password }"
+                                style="border-radius: 30px; height: 50px; width: 90%; margin-left: 20px;" />
+                            <label for="floatingPassword"
+                                style="margin-left: 25px; color: gray; margin-bottom: 25px;">MẬT
+                                KHẨU</label>
+                        </div>
+                        <p style="color: red; margin-left: 30px" ng-show="errorMessages.password">{{
+                            errorMessages.password }}
+                        </p>
+                        <p class="text-success" style="margin-left: 30px" ng-show="successMessages.info">{{
+                            successMessages.info }}
+                        </p>
+                        <div class="group-btn" style="margin-top: 40px">
+                            <button type="submit" style=" margin-left: 45px; width: 40%; border-radius: 30px;"
+                                class="mb-1 kl btn btn-dark">
+                                Xác nhận
+                            </button>
+                            <a style=" margin-left: 20px; width: 40%; border-radius: 30px;" class="mb-1 kl btn btn-dark"
+                                    href="#!register"> Đăng ký</a>
+                        </div>
+                    </form>
+                </div>
+            </ul>
+        </div>
+    </main>
+</body>

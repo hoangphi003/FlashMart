@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>FlashMart Shop</title>
+	<link rel="shortcut icon" href="/assets/images/logos/logoicon.png" type="image/png">
+	<!-- Bootstrap CSS v5.2.1 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/home.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+	<main class="main-content">
+		<div class="page-header-area">
+			<div class="container" style="margin-top: 20px;">
+				<div class="col-12 text-center">
+					<div class="page-header-content">
+						<ul class="breadcrumb mb-0">
+							<li>
+								<a href="/">Home</a>
+							</li>
+							<li class="breadcrumb-sep">/</li>
+							<li>Your Order</li>
+						</ul>
+						<h4 class="title">Thông tin đặt hàng</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container my-3" th:object="${order}">
+			<div class="account-form-wrap" style="padding: 0; box-shadow: none;">
+				<div class="login-form">
+					<div class="bg-success text-white p-3">Thông tin giao hàng</div>
+					<div class="row mt-2 mx-2">
+						<div class="form-group col-sm-3">
+							<label class="form-label">Tên người mua:</label>
+							<input th:field="*{account.Fullname}" class="form-control bg-light" readonly>
+						</div>
+						<div class="form-group col-sm-3">
+							<label class="form-label">Số điện thoại:</label>
+							<input th:field="*{account.phone}" class="form-control bg-light" readonly>
+						</div>
+						<div class="form-group col-sm-3">
+							<label class="form-label">Ngày mua:</label>
+							<input th:field="*{orderDate}" class="form-control bg-light" readonly>
+						</div>
+						<div class="form-group col-sm-3">
+							<label class="form-label">Trạng thái:</label>
+							<input th:field="*{status}" class="form-control bg-light" readonly>
+						</div>
+
+						<div class="form-group col-sm-12 mb-3 mt-2">
+							<label class="form-label">Shipping Address:</label>
+							<input th:field="*{address}" class="form-control bg-light" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section class="product-area shopping-cart-area">
+				<div class="row my-3">
+					<div class="col-12">
+						<div class="bg-success text-white p-3">Thông tin đơn hàng</div>
+						<div class="shopping-cart-wrap">
+							<div class="cart-table table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Mã đơn</th>
+											<th>Hình</th>
+											<th>Tên</th>
+											<th>Giá</th>
+											<th>Số lượng</th>
+											<th>Tổng tiền</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="detail:*{orderDetails}" th:object="${detail}">
+											<td class="align-middle price">[[*{product.id}]]</td>
+											<td class="align-middle price">
+												<img th:src="@{|/assets/images/products/${detail.product.image}|}"
+													style="height: 100px;">
+											</td>
+											<td class="align-middle text-start">[[*{product.ProductName}]]</td>
+											<td class="align-middle price">
+												[[*{#numbers.formatDecimal(price,0,'COMMA',3,'POINT')}]]</td>
+											<td class="align-middle">[[*{quantity}]]</td>
+											<td class="align-middle price">
+												[[*{#numbers.formatDecimal(price*quantity,0,'COMMA',3,'POINT')}]]</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+
+</html>

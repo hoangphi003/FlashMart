@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Order Detail Management</title>
+	<link rel="shortcut icon" type="image/png" href="../assets/images/logos/logo-icon.png" />
+	<link rel="stylesheet" href="/assets/css/styles.min.css" />
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+	<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed">
+		<!-- Sidebar Start -->
+		<header th:replace="~{/layout/admin/menu.html::asidebar-admin}"></header>
+		<!--  Sidebar End -->
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+			<header th:replace="~{/layout/admin/header.html::navbar-admin}"></header>
+			<!--  Header End -->
+			<div class="container-fluid">
+
+				<div class="card">
+					<div class="card-title m-3">
+						<div class="row mb-3">
+							<h3 class="col-6 my-auto fw-semibold">Order Details Management</h3>
+							<div class="col-6 head-seach-form">
+								<input type="text" class="form-control position-relative" placeholder="Search"> <i
+									class="ti ti-search seach-icon-form"></i>
+							</div>
+						</div>
+					</div>
+					<div class="card-body p-3">
+						<div class="col-lg-12 d-flex align-items-stretch">
+							<div class="card w-100">
+								<div class="card-body p-4">
+									<h5 class="card-title fw-semibold mb-4">Recent Information</h5>
+									<div class="table-responsive">
+										<table class="table text-nowrap mb-0 align-middle">
+											<thead class="text-dark fs-4">
+												<tr>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">ID Order Detail</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Product_ID</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Quantity</h6>
+													</th>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-1">Price</h6>
+													</td>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Order_ID</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0"></h6>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="x" items="${orderDetails}">
+													<tr>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">${x.ID}</h6>
+														</td>
+
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">${x.product.ID}</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-normal mb-1">${x.quantity}</h6>
+														</td>
+														<td class="border-bottom-0">
+															<fmt:formatNumber value="${x.price}" type="currency"
+																currencySymbol="VND" maxFractionDigits="2" />
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-normal mb-1">${x.oder.ID}</h6>
+														</td>
+													</tr>
+												</c:forEach>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--  Body Wrapper -->
+
+	<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="../assets/js/sidebarmenu.js"></script>
+	<script src="../assets/js/app.min.js"></script>
+	<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>FlashMart Shop</title>
+	<link rel="shortcut icon" href="/assets/images/logos/logoicon.png" type="image/png">
+	<!-- Bootstrap CSS v5.2.1 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/home.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+	<main class="main-content">
+		<div class="page-header-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<div class="page-header-content">
+							<nav class="breadcrumb-area">
+								<ul class="breadcrumb">
+									<li>
+										<a href="/">Home</a>
+									</li>
+									<li class="breadcrumb-sep">/</li>
+									<li>Your Orders</li>
+								</ul>
+							</nav>
+							<h4 class="title">Your Orders</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container my-3">
+			<section class="product-area shopping-cart-area">
+				<div class="row my-3">
+					<div class="col-12">
+						<div class="bg-success text-white p-3">MY PURCHASES AND ORDERS</div>
+						<div class="shopping-cart-wrap">
+							<div class="cart-table table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="text-center">No</th>
+											<th>Fullname</th>
+											<th>Order Date</th>
+											<th>Shipping Address</th>
+											<th>SDT</th>
+											<th class="text-center"></th>
+										</tr>
+									</thead>
+									<tbody>
+												<th:block th:each="x: ${orders}">
+											<tr>
+												<td class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">[(${x.id})]</h6>
+												</td>
+				
+												<td class="border-bottom-0">
+													<h6 class="fw-semibold mb-1">[(${x.account.Fullname})]</h6>
+												</td>
+													<td class="border-bottom-0">
+													<h6 class="fw-semibold mb-1">[(${x.order_date})]</h6>
+												</td>
+												<td class="border-bottom-0">
+													<h6 class="fw-semibold mb-1">[(${x.Address})]</h6>
+												</td>
+												<td class="border-bottom-0">
+													<h6 class="fw-semibold mb-1">[(${x.SDT})]</h6>
+												</td>
+												<td class="border-bottom-0" >
+													<a th:href="'/order/detail/' + ${x.id}" class="btn btn-danger" id="detail-see-${x.id}">
+														<i class="fa fa-eye"></i>
+													</a>
+												</td>
+											</tr>
+										</th:block>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

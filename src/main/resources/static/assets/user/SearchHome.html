@@ -1,0 +1,48 @@
+<div class="container hot-product mb-4 collections">
+	<div class="card mt-5 border-0">
+		<h3 class="fw-bold mt-3">Tìm kiếm sản phẩm</h3>
+		<div class="row">
+			<div class="col-3 mb-4" ng-repeat="item in result">
+				<div class="card product border-0 position-relative overflow-hidden">
+					<div class="c body">
+						<a href="#!detail/{{ item.id }}/{{item.category.id}}">
+							<img src="/assets/images/products/{{item.image}}" class="w-100 rounded-3 mb-2" alt="">
+						</a>
+						<span href="" class="text-black text-decoration-none fw-bold">{{item.productName}}</span>
+						<span class="d-block text-light-gray">{{item.brand}}</span>
+						<span class="d-block fw-bold">{{item.price}} VND</span>
+ 					</div>
+					<span class="choose-size text-decoration-none">
+						<div class="card text-dark card-item">
+							<h6 class="fw-bolder mb-3 mt-3 mx-3 text-center">Thêm nhanh vào giỏ
+								hàng</h6>
+							<div class="row mt-2">
+								<div class="col-3">
+									<div ng-if="token">
+										<a class="btn btn-light text-black" ng-click="cart.add(item.id)"
+											style="min-width:240px;border-top-left-radius: 0;border-top-right-radius: 0;">
+											<i class="fa-solid fa-cart-plus fs-5 py-1"></i>
+										</a>
+									</div>
+									<div ng-if="!token">
+										<a class="btn btn-light text-black" href="#!login"
+											style="min-width:240px;border-top-left-radius: 0;border-top-right-radius: 0;">
+											<i class="fa-solid fa-cart-plus fs-5 py-1"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End Hot product -->
+
+<div class="scroll-top scroll-container">
+	<a class="bg-primary text-white rounded-pill p-1 text-decoration-none px-2" href="#top"><i
+			class="fa-solid fa-arrow-up"></i></a>
+</div>
+<!-- End scroll top -->

@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div class="container-fluid product_section_container mb-3 " style="margin-top: 140px">
+		<main class="main-content">
+			<section class="product-area shopping-cart-area">
+				<div class="container">
+					<a class="button mb-4 text-decoration-none" href="javascript:(0);" ng-click="cart.clear()">Xóa tất
+						cả</a>
+					<table class="table table-border">
+						<thead>
+							<tr>
+								<th class="indecor-product-remove">Xóa</th>
+								<th class="indecor-product-thumbnail">Hình</th>
+								<th class="indecor-product-name">Tên sản phẩm</th>
+								<th class="indecor-product-price">Giá</th>
+								<th class="indecor-product-quantity">Số lượng</th>
+								<th class="indecor-product-subtotal">Tổng giá</th>
+							</tr>
+						</thead>
+						<tbody>
+							</input>
+							<tr ng-repeat="item in cart.list">
+								<td class="indecor-product-remove" style="padding-top: 4%;">
+									<a href=" javascript:(0);" ng-click="cart.remove(item.id)">
+										<i class="fa fa-trash text-danger"></i>
+									</a>
+								</td>
+								<td class="indecor-product-thumbnail">
+									<img src="assets/images/products/{{item.image}}" class="" style="height: 100px;">
+								</td>
+								<td class="indecor-product-name" style="padding-top: 3%;">
+									<span class="title fs-4">{{item.productName}}</h4>
+								</td>
+								<td class="indecor-product-price" style="padding-top: 4%;">
+									<span class="price">{{item.price | number:2}} VND</span>
+								</td>
+								<td class="indecor-product-quantity" style="padding-top: 3%;">
+									<input type="number" pattern="[0-9]*" class="form-control w-50" id="spinner"
+										name="value" value="1" min="1" step="1"
+										ng-change="cart.saveToLocalStorage()" ng-model="item.qty">
+								</td>
+								<td class="indecor-product-subtotal" style="padding-top: 4%;">
+									<span class="price">{{item.qty*item.price | number:2}}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- Giỏ hàng -->
+					<a href="#!checkout" class="btn btn-warning float-end">Mua hàng</a> <br>
+				</div>
+			</section>
+		</main>
+	</div>
+
+</body>
+
+</html>

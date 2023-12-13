@@ -1,0 +1,208 @@
+<body>
+	<div class="wrapper collections">
+		<div style="border-radius: 20px;" class="container-fluid">
+			<div class="container-fluid " style="margin-top: 90px;">
+				<hr class="opacity-0">
+				<span style="color: #808080; font-size: 14px;">
+					Trang chủ / Sản phẩm mới</span>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+						<hr class="my-0">
+						<div class="carousel-inner position-relative ">
+							<div class="carousel-item active mt-3">
+								<div class="">
+									<img src="/assets/images/products/{{ item.image }}" class="w-100 " alt=""
+										style="min-height: 500px;">
+								</div>
+							</div>
+							<div class="carousel-item mt-3">
+								<div class="">
+									<img src="/assets/images/products/{{ item.image }}" class="w-100 " alt=""
+										style="min-height: 500px;">
+								</div>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide="prev">
+							<span class="carousel-control-prev-icon bg-secondary" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide="next">
+							<span class="carousel-control-next-icon bg-secondary" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="box40">
+						<h2 class=" mb-3"
+							style="color: #231f20; font-size: 32px; font-weight: bold; line-height: 40px;">
+							{{ item.productName }}</h2>
+					<!--	<span style="font-size: 12px; line-height: 15px; letter-spacing: 0.36px">Đã
+							bán(web):1009</span><br>-->
+						<div style="margin-top: 20px;">
+							<span style="font-weight: 500; font-size: 24px; line-height: 20px;" class="me-2">
+								{{ item.price | number:2}} VND
+							</span><br>
+						</div>
+						<div style="margin-top: 10px;" class="mb-4  text-capitalize">
+							<!--<h6 style="color: #231f20; line-height: 21px; font-size: 14px;">
+								Màu sắc: <a style="font-weight: 700; line-height: 21px; font-size: 14px;">Đen / xám</a>
+							</h6>-->
+							<h6 style="color: #231f20; line-height: 21px; font-size: 14px;">
+								Thương hiệu: {{ item.brand }}
+							</h6>
+						</div>
+						<!--<div class="kx">
+							<div class="btn-group-vertical" role="group"
+								aria-label="Vertical radio toggle button group">
+								<input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1"
+									autocomplete="off" checked> <label
+									style="background-color: rgb(0, 0, 0); height: 30px; width: 50px; border-radius: 20px;"
+									class="btn" for="vbtn-radio1"></label>
+							</div>
+							<div style="margin-left: 5px;" class="btn-group-vertical" role="group"
+								aria-label="Vertical radio toggle button group">
+								<input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3"
+									autocomplete="off"> <label
+									style="background-color: Gray; height: 30px; width: 50px; border-radius: 20px;"
+									class="btn btn-outline-danger" for="vbtn-radio3"></label>
+							</div>
+							<div class="btn-group-vertical" role="group"
+								aria-label="Vertical radio toggle button group">
+								<input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2"
+									autocomplete="off"> <label
+									style="background-color: green; height: 30px; width: 50px; border-radius: 20px;"
+									class="btn btn-outline-danger" for="vbtn-radio2"></label>
+							</div>-->
+						
+						</div>
+						<div style="margin-top: 15px;" >
+							<!--<input style="text-align: center; width: 100px; border-radius: 20px; height: 37px;"
+								id='quantity' min="1" name='quantity' type='number' value=1 class="mb-2 me-3"/>-->
+							<div ng-if="token" class="d-inline">
+								<a class="btn btn-outline-dark rounded-5 mb-1" href="#!cart"
+									style="width: 300px;"  ng-click="cart.add(item.id)">
+									Thêm vào
+									giỏ hàng
+								</a>
+							</div>
+							<div ng-if="!token" class="d-inline">
+								<a class="btn btn-outline-dark rounded-5 mb-1" href="#!login"
+									style="margin-left: 30px; width: 300px;">
+									Thêm vào
+									giỏ hàng
+								</a>
+							</div>
+						</div>
+						<hr>
+						<div class="hot-point">
+							<h6 style="">Đặc điểm nổi bật</h6>
+							<br>
+							
+							<h6 style="color: #231f20; font-size: 14px; line-height: 21px;">
+								- Chất liệu: Excool Microfiber</h6>
+							<br>
+							<h6 style="color: #231f20; font-size: 14px; line-height: 21px;">
+								- Thành phần: 86% Microfiber + 14% Spandex</h6>
+							<br>
+							<h6 style="color: #231f20; font-size: 14px; line-height: 21px;">
+								- Vải mát mẻ, nhanh khô và thoáng khi để bạn thoải mái cả ngày
+								dài</h6>
+							<br>
+							<h6 style="color: #231f20; font-size: 14px; line-height: 21px;">
+								- Diện tích rộng thuận lợi cho việc đưng đồ nhiều</h6>
+							<br>
+							<h6 style="color: #231f20; font-size: 14px; line-height: 21px;">
+								- Tạo nên vẽ đẹp cho người mang một cách tốt nhất và trẻ chung</h6>
+						</div>
+						<div class="info-icon mt-5">
+							<div class="row">
+								<div class="col-4 mb-3">
+									<div class="card-m">
+										<div class="text-center">
+											<img src="https://www.coolmate.me/images/icons/icon3.svg"
+												alt="Đổi trả với số điện thoại" class="mb-2">
+										</div>
+										<h6 class="text-center">Đổi trả cực dễ chỉ cần số điện thoại</h6>
+									</div>
+								</div>
+								<div class="col-4 mb-3">
+									<div class="card-m">
+										<div class="text-center">
+											<img src="https://www.coolmate.me/images/icons/icon4.svg"
+												alt="Miễn phí vận chuyển" class="mb-2">
+										</div>
+										<h6 class="text-center">Miễn phí vận chuyển cho đơn hàng trên 200k</h6>
+									</div>
+								</div>
+								<div class="col-4 mb-3">
+									<div class="card-m">
+										<div class="text-center">
+											<img style="" src="https://www.coolmate.me/images/icons/icon5.svg"
+												alt="Đổi hàng trong 60 ngày" class="mb-2">
+										</div>
+										<h6 class="text-center">Miễn phí vận chuyển cho đơn hàng trên 200k</h6>
+									</div>
+								</div>
+								<div class="col-4 mt-1">
+									<div class="card-m">
+										<div class="text-center">
+											<img src="https://www.coolmate.me/images/icons/icon2.svg"
+												alt="Hotline 1900.27.27.37" class="mb-2">
+										</div>
+										<h6 class="text-center">Hotline 1900.27.27.37 hỗ trợ từ 8h30 - 22h</h6>
+									</div>
+								</div>
+								<div class="col-4 mt-1">
+									<div class="card-m">
+										<div class="text-center">
+											<img src="https://www.coolmate.me/images/icons/icon1.svg"
+												alt="Trả hàng tận nơi" class="mb-2">
+										</div>
+										<h6 class="text-center">Đến tận nơi nhận hàng, trả hoàn tiền trong 24h
+										</h6>
+									</div>
+								</div>
+								<div class="col-4 mb-1">
+									<div class="card-m">
+										<div class="text-center">
+											<img src="https://www.coolmate.me/images/icons/icon6.svg" alt="Giao hàng"
+												class="mb-2">
+										</div>
+										<h6 class="text-center">Giao hàng nhanh trên khắp thế giới luôn nha</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- chi tiết sản phẩm -->
+		<div class="container-fluid mt-3">
+			<h6 class="bg-info mb-0 p-1" style="width: 150px;">Sản phẩm khác
+			</h6>
+			<hr class="mt-0">
+			<h4 style="text-align: center; font-size: 28px; line-height: 42px; font-weight: bold;" class="mb-3">
+				SẢN PHẨM CÙNG LOẠI</h4>
+			<div class="container text-center">
+				<div class="row border-0 mb-2">
+					<div class="col-3 mb-4" ng-repeat="x in itemc">
+						<a href="#!detail/{{ x.id }}/{{item.category.id}}">
+							<img src="/assets/images/products/{{x.image}}" class="card-img-top w-100 rounded-3"
+								alt=""></a>
+						<div class="card-body mt-2 text-start">
+							<p class="card-title">{{ x.productName }}</p>
+							<p class="card-text mt-1 fw-semibold">{{ x.price }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>

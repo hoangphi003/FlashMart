@@ -1,0 +1,90 @@
+<main>
+	<div id="s" class="container justify-content-center d-flex mt-5">
+		<div class="nothing mt-4 w-75 mb-5 mt-5">
+			<h1 class="mb-3 text-center" style="font-weight: bold;">Đăng ký</h1>
+			<br>
+			<h6 style="margin-top: -20px; font-size: 14px;" class="text-center">Đăng
+				nhập để không bỏ lỡ quyền lợi tích luỹ và hoàn tiền.cho bất kỳ đơn
+				hàng nào</h6>
+			<br>
+			<h6 class="text-center" style="margin-top: -10px; font-weight: bold; font-size: 14px;">
+				Đăng nhập hoặc đăng ký (miễn phí)</h6>
+			<hr style="width: 90%; margin-left: 20px;">
+			<br>
+			<form ng-submit="register()" method="post">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="username" placeholder="name" name="username"
+						style="border-radius: 30px; height: 50px; width: 90%; margin-left: 20px;"
+						ng-model="form.username" ng-class="{ 'error-field': errorMessages.username }" /> <label
+						for="floatingName" style="margin-left: 25px; color: gray; margin-bottom: 25px;">Username
+						của bạn</label>
+					<p style="color: red; margin-left: 30px" ng-show="errorMessages.username">{{
+						errorMessages.username }}</p>
+				</div>
+				<div class="form-floating mt-3">
+					<input type="text" class="form-control" id="fullname" placeholder="name"
+						style="border-radius: 30px; height: 50px; width: 90%; margin-left: 20px;"
+						ng-model="form.fullname" ng-class="{ 'error-field': errorMessages.fullname }" /> <label
+						for="floatingName" style="margin-left: 25px; color: gray; margin-bottom: 25px;">Tên
+						của bạn</label>
+					<p style="color: red; margin-left: 30px" ng-show="errorMessages.fullname">{{
+						errorMessages.fullname }}</p>
+				</div>
+
+				<div class="form-floating mt-3">
+					<input type="number" class="form-control" id="phonenumber" name="phone" placeholder="SĐT"
+						style="border-radius: 30px; height: 50px; width: 90%; margin-left: 20px;" ng-model="form.phone"
+						ng-class="{ 'error-field': errorMessages.phone }" /> <label for="floatingSÄT"
+						style="margin-left: 25px; color: gray; margin-bottom: 25px;">SĐT
+						của bạn</label>
+					<p style="color: red; margin-left: 30px" ng-show="errorMessages.phone">{{
+						errorMessages.phone }}</p>
+				</div>
+
+				<div class="form-floating mb-2 mt-3">
+					<input type="email" name="email" class="form-control" id="email" placeholder="name@example.com"
+						style="border-radius: 30px; height: 50px; width: 90%; margin-left: 20px;" ng-model="form.email"
+						ng-class="{ 'error-field': errorMessages.email }">
+					<label for="floatingEmail" style="margin-left: 25px; color: gray; margin-bottom: 25px;">Email
+						của bạn</label>
+					<p style="color: red; margin-left: 30px" ng-show="errorMessages.email">{{
+						errorMessages.email }}</p>
+				</div>
+				<div class="form-check form-check-inline mt-3" style="margin-left: 30px">
+					<input class="form-check-input" type="radio" name="gender" id="inlineRadio1" ng-value="true"
+						ng-model="form.gender" ng-class="{ 'error-field': errorMessages.gender }">
+					<label class="form-check-label" for="inlineRadio1">Nam</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="gender" id="inlineRadio2" ng-value="false"
+						ng-model="form.gender" ng-class="{ 'error-field': errorMessages.gender }">
+					<label class="form-check-label" for="inlineRadio2">Nữ</label>
+				</div>
+				<p style="color: red; margin-left: 30px" ng-show="errorMessages.gender">{{
+					errorMessages.gender }}</p>
+				<div class="form-floating mt-3">
+					<input type="password" name="password" class="form-control" id="password" placeholder="Password"
+						ng-model="form.password" ng-class="{ 'error-field': errorMessages.password }"
+						style="border-radius: 30px; height: 50px; width: 90%; margin-left: 20px;">
+					<label for="floatingPassword" style="margin-left: 25px; color: gray; margin-bottom: 25px;">Mật
+						khẩu mới</label>
+					<p style="color: red; margin-left: 30px" ng-show="errorMessages.password">{{
+						errorMessages.password }}</p>
+					<p class="alert alert-success mt-3" ng-show="successMessages.info"
+						style="border-radius: 15px; height: 50px; width: 90%; margin-left: 20px;">{{
+						successMessages.info }}
+					</p>
+				</div>
+
+				<div class="group-btn" style="margin-top: 40px">
+					<button type="submit" style=" margin-left: 45px; width: 40%; border-radius: 30px;"
+						class="mb-1 kl btn btn-dark">
+						Xác nhận
+					</button>
+					<a style=" margin-left: 20px; width: 40%; border-radius: 30px;" class="mb-1 kl btn btn-dark"
+						href="#!login"> Đăng nhập</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</main>

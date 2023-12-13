@@ -1,0 +1,290 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<title>Product Management</title>
+	<link href="/assets/images/logos/logoicon.png" rel="shortcut icon" type="image/png" />
+	<link href="/assets/css/styles.min.css" rel="stylesheet" />
+	<link href="/assets/fonts/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+	<div class="page-wrapper" data-header-position="fixed" data-layout="vertical" data-navbarbg="skin6"
+		data-sidebar-position="fixed" data-sidebartype="full" id="main-wrapper">
+		<!-- Sidebar Start -->
+		<header th:replace="~{/layout/admin/menu.html::asidebar-admin}"></header>
+		<!--  Sidebar End -->
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+			<header th:replace="~{/layout/admin/header.html::navbar-admin}"></header>
+			<!--  Header End -->
+			<div class="container-fluid">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title fw-semibold mb-4">Product Management</h5>
+						<div class="card">
+							<div class="card-body">
+								<form method="post" th:object="${product}" enctype="multipart/form-data"
+									th:action="@{/admin/saveproduct}">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="mb-3 d-none">
+												<label class="form-label">ID
+													Product: </label>
+												<input class="form-control" th:field="*{id}" type="text" />
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Product
+													Name: </label>
+												<input class="form-control" th:field="*{productName}" type="text" />
+												<div class="alert alert-danger mt-1"
+													th:if="${#fields.hasErrors('ProductName')}"
+													th:errors="*{ProductName}"></div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="mb-3">
+												<label class="form-label">Image:
+												</label>
+												<input class="form-control" type="file" name="image" id="photo"
+													accept="image/*" th:value="${product.image}" />
+												<div class="alert alert-danger mt-1" th:if="${photo_message}"
+													th:text="${photo_message}"></div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-2">
+											<div class="mb-3">
+												<label class="form-label">Category name: </label>
+												<select class="form-select form-select-md" th:field="*{category.id}">
+													<option th:each="x: ${categoryList}" th:value="${x.id} ">
+														[(${x.CategoryName})]
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="mb-3">
+												<label class="form-label">Color name: </label>
+												<select class="form-select form-select-md" name="selectedColor">
+													<option th:each="x: ${colors}" th:value="${x.id}">
+														[(${x.ColorName})]
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="mb-3">
+												<label class="form-label">Size name: </label>
+												<select class="form-select form-select-md" name="selectedSize">
+													<option th:each="x: ${sizes}" th:value="${x.id}">
+														[(${x.SizeName})]
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="mb-3">
+												<label class="form-label">Brand:
+												</label>
+												<input class="form-control" th:field="*{brand}" type="text" />
+												<div class="alert alert-danger mt-1"
+													th:if="${#fields.hasErrors('Brand')}" th:errors="*{Brand}">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="mb-3">
+												<label class="form-label">Price:
+												</label>
+												<input class="form-control" th:field="*{price}" type="number" min="1" />
+												<div class="alert alert-danger mt-1"
+													th:if="${#fields.hasErrors('Price')}" th:errors="*{Price}"></div>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="mb-3">
+												<label class="form-label">Quantity:
+												</label>
+												<input class="form-control" th:field="*{quantity}" type="number"
+													min="1" />
+												<div class="alert alert-danger mt-1"
+													th:if="${#fields.hasErrors('Quantity')}" th:errors="*{Quantity}">
+												</div>
+											</div>
+										</div>
+									</div>
+									<button class="btn btn-primary me-3" formaction="/admin/saveproduct"
+										id="submitButton">Submit
+									</button>
+									<button class="btn btn-primary me-3 d-none" formaction="/admin/saveproduct"
+										id="updateButton">Update
+									</button>
+									<a class="btn btn-danger me-3"
+										onclick="return confirm('Bạn có chắc muốn xóa không?');"
+										th:href="'/admin/deleteproduct/' + *{id}">Delete</a>
+									<a class="btn btn-primary me-3" href="/admin/product">Clear</a>
+								</form>
+							</div>
+						</div>
+						<form method="post">
+							<div class="row mb-3">
+								<h5 class="col-6 card-title fw-semibold my-auto">Product table</h5>
+								<div class="col-6 head-search-form">
+									<form action="/admin/searchColor" method="get">
+										<div class="input-group">
+											<input type="text" class="form-control position-relative"
+												placeholder="Search" th:name="keywords" th:value="${keywords}" />
+											<button class="btn btn-outline-secondary" type="submit">
+												<i class="ti ti-search search-icon-form"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</form>
+						<div class="col-lg-12 d-flex align-items-stretch">
+							<div class="card w-100">
+								<div class="card-body p-4">
+									<h5 class="card-title fw-semibold mb-4">Recent Information
+										<a href="/admin/product/sort" class="ms-2"><i class="fa-solid fa-sort"></i></a>
+									</h5>
+									<div class="table-responsive">
+										<table class="table text-nowrap mb-0 align-middle">
+											<thead class="text-dark fs-4">
+												<tr>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">ID Product</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Product Name</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Price</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Quantity</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Name Category</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Image</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Brand</h6>
+													</th>
+													
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Action</h6>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<th:block th:each="x: ${list.content}">
+													<tr>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-0">[(${x.id})]</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">[(${x.ProductName})]</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1" th:inline="text">
+																[( ${#numbers.formatDecimal(x.Price, 0, 'COMMA', 2,
+																'POINT')} )]
+															</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-normal mb-1">
+																[(${x.quantity})]
+															</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-normal mb-1">
+																[(${x.category.CategoryName})]
+															</h6>
+														</td>
+														<td class="border-bottom-0">
+															<img th:src="@{/assets/images/products/{img}(img=${x.Image})}"
+																width="50px">
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-normal mb-0">[(${x.Brand})]</h6>
+														</td>
+														
+														<td class="border-bottom-0 ">
+															<a class=" text-danger"
+																onclick="return confirm('Bạn có chắc muốn xóa không?');"
+																th:href="'/admin/deleteproduct/' + ${x.id}">
+																<i class="fa-solid fa-trash"></i>
+															</a>
+														</td>
+														<td class="border-bottom-0">
+															<a class="text-warning"
+																th:href="'/admin/editproduct/'+${x.id}+'?showUpdate=true'">
+																<i class="fa-solid fa-pencil"></i>
+															</a>
+														</td>
+													</tr>
+												</th:block>
+											</tbody>
+										</table>
+										<div th:if="${#lists.isEmpty(list.content)}"
+											class="d-flex justify-content-center mt-1">
+											<!-- Nếu không có dữ liệu, hiển thị thông báo -->
+											<h2>Không thấy kết quả!</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<nav aria-label="..." class="d-flex justify-content-center">
+							<ul class="pagination pagination-md">
+								<li aria-current="page" th:each="number : ${#numbers.sequence(1, list.totalPages)}"
+									th:class="${currentPage==number-1 ? 'page-item active' : 'page-item'}">
+									<a class="page-link" th:href="@{/admin/product?p={num}(num=${number-1})}"
+										th:text="${number}">
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  Body Wrapper -->
+	<script>
+		const editButtons = document.querySelectorAll('.edit-button');
+		const updateButton = document.getElementById('updateButton');
+		const submitButton = document.getElementById('submitButton');
+
+		// Lấy tham số từ URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const showUpdate = urlParams.get("showUpdate");
+
+		// Kiểm tra giá trị tham số và hiển thị nút "Update" nếu cần thiết
+		if (showUpdate === "true") {
+			// Hiển thị nút "Update" và ẩn nút "Submit"
+			updateButton.classList.remove('d-none');
+			submitButton.classList.add('d-none');
+		} else {
+			// Ẩn nút "Update" và hiển thị nút "Submit" mặc định
+			updateButton.classList.add('d-none');
+			submitButton.classList.remove('d-none');
+		}
+	</script>
+	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/js/sidebarmenu.js"></script>
+	<script src="/assets/js/app.min.js"></script>
+	<script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+</html>

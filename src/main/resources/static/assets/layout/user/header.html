@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<header>
+		<div class="self-info fixed-top container-fluid">
+			<div class="info p-1 float-end ">
+				<a href="#!blog" class="text-black text-decoration-none">Blog</a>
+				<a href="#!qaa" class="ms-2 text-black text-decoration-none">Q&A</a>
+			</div>
+		</div>
+		<!-- place navbar here -->
+		<nav class="navbar navbar-expand fixed-top b mt-4 shadow-sm fs-6">
+			<div class="container py-0">
+				<a class="navbar-brand" href="/"> <span class="logo text-uppercase p-1 text-black">FlashMart</span>
+					<span class="text-white text-uppercase">Shop</span>
+				</a>
+				<button class="navbar-toggler d-lg-none " type="button" data-bs-toggle="collapse"
+					data-bs-target="#collapsibleNavId" aria-controls=" " aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-between" id="collapsibleNavId">
+					<ul class="navbar-nav hover-under mt-2 mt-lg-0 text-uppercase fw-bold justify-content-center">
+						<li class="nav-item pe-2 d-none" ng-repeat="x in cate" ng-if="$index < 8">
+							<a class="nav-link text-black fw-normal" href="#!categoryNav/{{x.id}}">{{ x.categoryName
+								}}</a>
+						</li>
+						<li class="nav-item pe-2">
+							<a class="nav-link text-black fw-normal h" href="/">Trang chủ</a>
+						</li>
+						<li class="nav-item pe-2">
+							<a class="nav-link text-black fw-normal h" href="#!blog">Tin tức</a>
+						</li>
+						<li class="nav-item pe-2">
+							<a class="nav-link text-black fw-normal h" href="#!qaa">câu hỏi</a>
+						</li>
+						<li class="nav-item pe-2" ng-if="token">
+							<a class="nav-link text-black fw-normal h" href="#!myorder">Đơn hàng</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link text-black fw-normal dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								Danh mục
+							</a>
+							<ul class="dropdown-menu">
+								<li ng-repeat="x in cate">
+									<a class="dropdown-item text-black fw-normal text-capitalize"
+										href="#!categoryNav/{{x.id}}">
+										{{ x.categoryName
+										}}
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="navbar-nav mt-2 mt-lg-0">
+						<li class="nav-item"><a class="nav-link " href="" data-bs-toggle="modal"
+								data-bs-target="#exampleModal" id="modal">
+								<i class="fa-solid fa-search fs-5 text-black"></i>
+							</a></li>
+						<li class="nav-item ms-1 checkout" ng-if="token">
+							<a class="nav-link position-relative" href="#!cart">
+								<i class="fa-solid fa-cart-shopping fs-5 text-black"></i>
+							</a>
+						</li>
+						<li class="nav-item ms-1 checkout" ng-if="!token">
+							<a class="nav-link position-relative" href="#!login">
+								<i class="fa-solid fa-cart-shopping fs-5 text-black"></i>
+							</a>
+						</li>
+						<li class="nav-item dropdown" style="margin-right: 4px">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa-solid fa-user-large fs-5 text-black"></i>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: -85px;">
+								<div ng-if="!token">
+									<!-- Đăng Nhập -->
+									<li><a class="dropdown-item text-black" href="#!login"
+											style="color: black; border-radius: 0">Đăng nhập</a></li>
+
+									<!-- Đăng Ký -->
+									<li><a class="dropdown-item text-black" style="color: black; border-radius: 0"
+											href="#!register">Đăng ký</a></li>
+
+									<!-- Quên Mật Khẩu -->
+									<li><a class="dropdown-item text-black" data-bs-toggle="modal"
+											data-bs-target="#getPassword" style="color: black; border-radius: 0px;">Lấy
+											mật
+											khẩu</a></li>
+								</div>
+
+								<div ng-if="token">
+									<!-- Đăng Xuất -->
+									<li ng-click="logOffToken()"><a class="dropdown-item text-black" href="#/!"
+											style="color: black; border-radius: 0">Đăng xuất</a></li>
+									<li><a class="dropdown-item text-black" data-bs-toggle="modal"
+											data-bs-target="#getPassword" style="color: black; border-radius: 0px;">Lấy
+											mật
+											khẩu</a></li>
+								</div>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<!--<a class="nav-link" href="#" id="navbarDropdown" role="button" type="button"
+								data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-expanded="false">
+								<i class="fa-regular fa-user fs-5 text-black"></i>
+							</a>-->
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- End nav -->
+
+		<!-- Modal's search form -->
+		<div class="modal fade" id="exampleModal" tabindex="-1">
+			<div class="modal-dialog modal-xl ">
+				<div class="modal-content position-relative">
+					<a type="button" class="my-5 position-absolute end-0 l me-3 fs-6" href="#!SearchProduct/">
+						<i class="fa fa-search"></i>
+					</a>
+					<div class="mb-3 mt-3 k">
+						<input type="text" class="form-control border-0 fs-5" ng-model="form.keyword"
+							placeholder="Nhập sản phẩm bạn muốn...">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Model's form search -->
+
+		<!-- Personal profile -->
+		<!--<div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="offcanvasNavbar"
+			aria-labelledby="offcanvasNavbarLabel">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Profile</h5>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+					aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+					<li class="nav-item">
+						<h3>Thông tin tài khoản</h3>
+						<div class="row mt-3">
+							<div class="col-6">Họ và tên: </div>
+							<div class="col-6 mb-3">{hiển thị ra đây}</div>
+							<div class="col-6">Giới tính: </div>
+							<div class="col-6 mb-3">{hiển thị ra đây}</div>
+							<div class="col-6">Số điện thoại: </div>
+							<div class="col-6 mb-3">{hiển thị ra đây}</div>
+							<div class="col-6">Vai trò: </div>
+							<div class="col-6 mb-3">{hiển thị ra đây}</div>
+						</div>
+						<button class="btn btn-outline-dark mt-3 mb-5" data-bs-toggle="modal"
+							data-bs-target="#updateAccount">Cập nhập</button>
+					</li>
+					<li class="nav-item">
+						<h3>Thông tin đăng nhập</h3>
+						<div class="row mt-3">
+							<div class="col-6">Email: </div>
+							<div class="col-6 mb-3">{hiển thị ra đây}</div>
+							<div class="col-6">Password: </div>
+							<div class="col-6 mb-3">{hiển thị ra đây}</div>
+						</div>
+						<button class="btn btn-outline-dark mt-3 mb-5" data-bs-target="#updateLogin"
+							data-bs-toggle="modal">Cập nhập</button>
+					</li>
+					<a href="" class="text-decoration-none text-black">
+						<li class="nav-item">
+							<h5><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</h5>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</div>-->
+		<!-- End Personal profile -->
+
+		<!-- Cập nhật tài khoản -->
+		<!-- Modal -->
+		<div class="modal fade" id="updateAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật tài khoản</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="" class="form-label">Họ và tên</label>
+							<input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+								placeholder="">
+						</div>
+						<div class="mb-3">
+							<label for="" class="me-3">Giới tính:</label>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="" id="" value="{3:option1}">
+								<label class="form-check-label" for="">Nam</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="" id="" value="option2">
+								<label class="form-check-label" for="">Nữ</label>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="" class="form-label">Số điện thoại</label>
+							<input type="text" class="form-control" name="" aria-describedby="helpId" placeholder="">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+						<button type="button" class="btn btn-primary">Lưu</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Hết cập nhật tài khoản -->
+
+		<!-- Cập nhật thông tin đăng nhập -->
+		<!-- Modal -->
+		<div class="modal fade" id="updateLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="">Cập nhật tài khoản</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="" class="form-label">Email: </label>
+							<input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+								placeholder="">
+						</div>
+						<div class="mb-3">
+							<label for="" class="form-label">Mật khẩu cũ: </label>
+							<input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+								placeholder="">
+						</div>
+						<div class="mb-3">
+							<label for="" class="form-label">Mật khẩu mới: </label>
+							<input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+								placeholder="">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+						<button type="button" class="btn btn-primary">Lưu</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Hết cập nhật thông tin đăng nhập -->
+
+		<!-- Modal's quenmatkhau.html form -->
+		<div class="modal fade" id="getPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Quên mật khẩu</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form name="myForm">
+							<div class="mb-3">
+								<label for="email" class="form-label">Email: </label>
+								<input type="email" class="form-control" id="email" name="email" ng-model="form.email"
+									required>
+							</div>
+							<div class="alert alert-success d-none" id="alert" role="alert">Đổi mật khẩu thành công
+								<button type="button" class="btn-close float-end" data-bs-dismiss="alert"
+									aria-label="Close"></button>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+						<button type="button" class="btn btn-primary" ng-click="mailer()">Lưu</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Emd Model's quenmatkhau.html form -->
+	</header>
+	<!-- <header ng-include="'/assets/layout/user/header.html'"></header> -->
+</body>
+
+</html>

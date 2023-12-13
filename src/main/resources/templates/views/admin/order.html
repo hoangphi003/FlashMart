@@ -1,0 +1,280 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<title>Order Management</title>
+	<link href="/assets/images/logos/logoicon.png" rel="shortcut icon" type="image/png" />
+	<link href="/assets/css/styles.min.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="page-wrapper" data-header-position="fixed" data-layout="vertical" data-navbarbg="skin6"
+		data-sidebar-position="fixed" data-sidebartype="full" id="main-wrapper">
+		<!-- Sidebar Start -->
+		<header th:replace="~{/layout/admin/menu.html::asidebar-admin}"></header>
+		<!--  Sidebar End -->
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+			<header th:replace="~{/layout/admin/header.html::navbar-admin}"></header>
+			<!--  Header End -->
+			<div class="container-fluid">
+				<div class="card">
+					<div class="card-title m-3">
+						<div class="row mb-3">
+							<h3 class="col-6 my-auto fw-semibold">Order Management</h3>
+						</div>
+					</div>
+					<div class="card-body p-3">
+						<div class="col-lg-12 d-flex align-items-stretch">
+							<div class="card w-100">
+								<div class="card-body p-4">
+									<form action="/admin/searchColor" method="get">
+										<div class="input-group">
+											<input type="text" class="form-control position-relative"
+												placeholder="Search" th:name="keywords" th:value="${keywords}" />
+											<button class="btn btn-outline-secondary" type="submit">
+												<i class="ti ti-search search-icon-form"></i>
+											</button>
+										</div>
+									</form>
+									<h5 class="card-title fw-semibold mb-4">Recent Information</h5>
+									<div class="table-responsive">
+										<table class="table text-nowrap mb-0 align-middle">
+											<thead class="text-dark fs-4">
+												<tr>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Account name</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Mail</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Phone</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Address</h6>
+													</th>
+
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Order Date</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Status</h6>
+													</th>
+													<th class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">Action</h6>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<th:block th:each="x: ${list}">
+													<tr>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">[(${x.account.Fullname})]
+															</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">[(${x.account.email})]</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">[(${x.account.phone})]</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1 lmw">
+																[(${x.Address})]</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1"
+																th:text="${#dates.format(x.OrderDate, 'dd-MM-yyyy')}">
+															</h6>
+														</td>
+														<td class="border-bottom-0">
+															<h6 class="fw-semibold mb-1">
+																[(${x.status})]</h6>
+														</td>
+														<td class="border-bottom-0 p-0 text-center">
+															<div
+																th:if="${x.status == 'Đã xác nhận' or x.status == 'Đã hủy'
+																or x.status == 'Đang giao' or x.status == 'Đã giao'
+																}">
+																<a class="btn py-1 px-2 rounded-3 text-white"
+																	style="cursor: no-drop; background-color: #f5f6fa;"
+																	th:disabled="true">
+																	Duyệt
+																</a>
+															</div>
+															<div th:if="${x.status == 'Đang chờ xác nhận'}">
+																<a class="btn btn-outline-primary py-1 px-2 rounded-3"
+																	th:href="'/admin/statussuccess/' + ${x.id}"
+																	onclick="return confirmUpdate()">
+																	Duyệt
+																</a>
+															</div>
+														</td>
+														<td class="border-bottom-0 p-0 text-center">
+															<div
+																th:if="${x.status == 'Đã xác nhận' or x.status == 'Đã hủy'
+																or x.status == 'Đang giao' or x.status == 'Đã giao'
+																}">
+																<a class="btn py-1 px-2 rounded-3 text-white"
+																	style="cursor: no-drop; background-color: #f5f6fa;"
+																	th:disabled="true">
+																	Hủy đơn
+																</a>
+															</div>
+															<div th:if="${x.status == 'Đang chờ xác nhận'}">
+																<a class="btn btn-outline-danger py-1 px-2 rounded-3"
+																	th:href="'/admin/statuscancel/'+${x.id}"
+																	onclick="return confirmCancel()">
+																	Hủy đơn
+																</a>
+															</div>
+														</td>
+														<td class="border-bottom-0 p-0 text-center">
+															<div th:if="${x.status == 'Đã hủy' or x.status == 'Đang chờ xác nhận'
+															or x.status == 'Đang giao' or x.status == 'Đã giao'
+															}">
+																<a class="btn py-1 px-2 rounded-3 ms-1 text-white"
+																	style="cursor: no-drop; background-color: #f5f6fa;"
+																	th:disabled="true" onclick="return confirmCancel()">
+																	Đang giao
+																</a>
+															</div>
+															<div th:if="${x.status == 'Đã xác nhận'}">
+																<a class="btn btn-outline-primary py-1 px-2 rounded-3 ms-1"
+																	th:href="'/admin/statusing/'+${x.id}"
+																	onclick="return confirmCancel()">
+																	Đang giao
+																</a>
+															</div>
+														</td>
+														<td class="border-bottom-0 p-0 text-center">
+															<div th:if="${x.status == 'Đã hủy' or x.status == 'Đang chờ xác nhận'
+															or x.status == 'Đã xác nhận'  or x.status == 'Đã giao'
+															}">
+																<a class="btn py-1 px-2 rounded-3 ms-1 text-white"
+																	style="cursor: no-drop; background-color: #f5f6fa;"
+																	th:disabled="true" onclick="return confirmCancel()">
+																	Đã giao
+																</a>
+															</div>
+															<div th:if="${x.status == 'Đang giao'}">
+																<a class="btn btn-outline-danger py-1 px-2 rounded-3 ms-1"
+																	th:href="'/admin/statused/'+${x.id}"
+																	onclick="return confirmCancel()">
+																	Đã giao
+																</a>
+															</div>
+														</td>
+
+														<td class="border-bottom-0">
+															<a th:href="'/admin/orderSee/' + ${x.id}"
+																class="btn btn-outline-primary rounded-3"
+																id="detail-see-${x.id}">
+																<i class="ti ti-list"></i>
+															</a>
+														</td>
+													</tr>
+												</th:block>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body p-3">
+							<div class="col-12 d-flex align-items-stretch card w-100">
+								<div class="table-responsive">
+									<table class="table text-nowrap mb-0 align-middle">
+										<thead class="text-dark fs-6">
+											<tr>
+												<th class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">ID order detail</h6>
+												</th>
+												<th class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">Price</h6>
+												</th>
+												<th class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">Product category</h6>
+												</th>
+												<th class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">Product name</h6>
+												</th>
+												<th class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">Quantity</h6>
+												</th>
+												<th class="border-bottom-0">
+													<h6 class="fw-semibold mb-0">Total</h6>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<th:block th:each="x: ${listorderdetail}">
+												<tr>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-0">[(${x.id})]</h6>
+													</td>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-1">[(${x.Price})]</h6>
+													</td>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-1">
+															[(${x.product.category.CategoryName})]</h6>
+													</td>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-1">[(${x.product.ProductName})]</h6>
+													</td>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-1">[(${x.Quantity})]</h6>
+													</td>
+													<td class="border-bottom-0">
+														<h6 class="fw-semibold mb-1">[(${x.total})]</h6>
+													</td>
+												</tr>
+											</th:block>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+		<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="/assets/js/sidebarmenu.js"></script>
+		<script src="/assets/js/app.min.js"></script>
+		<script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<script type="text/javascript">
+			function confirmUpdate() {
+				// Sử dụng hàm confirm để hiển thị hộp thoại xác nhận
+				var result = confirm("Bạn có chắc chắn muốn cập nhật trạng thái đã xác nhận cho đơn hàng này?");
+
+				// Nếu người dùng nhấp vào "OK", chuyển hướng
+				if (result) {
+					return true;
+				} else {
+					// Người dùng nhấp vào "Cancel", hủy sự kiện chuyển hướng
+					return false;
+				}
+			}
+			function confirmCancel() {
+				// Sử dụng hàm confirm để hiển thị hộp thoại xác nhận
+				var result = confirm("Bạn có chắc chắn muốn cập nhật trạng thái cho đơn hàng này?");
+				// Nếu người dùng nhấp vào "OK", chuyển hướng
+				if (result) {
+					return true;
+				} else {
+					// Người dùng nhấp vào "Cancel", hủy sự kiện chuyển hướng
+					return false;
+				}
+			}
+		</script>
+</body>
+
+</html>

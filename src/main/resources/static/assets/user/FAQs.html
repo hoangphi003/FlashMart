@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>FlashMart Shop</title>
+	<link rel="shortcut icon" href="/assets/images/logos/logoicon.png" type="image/png">
+	<!-- Bootstrap CSS v5.2.1 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/home.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<style>
+	.item-wrapper {
+		margin-bottom: 20px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+	}
+
+	.question {
+		background-color: #f5f5f5;
+		padding: 10px 15px;
+	}
+
+	.answer {
+		padding: 15px;
+	}
+</style>
+<body>
+<header th:replace="~{/layout/user/header.html::menu-user}"></header>
+
+<div class="row g-0 text-center">
+	<div class="container collections mb-2">
+		<div class="mt-2">
+			<h2>FAQs</h2>
+		</div>
+	</div>
+
+	<div class="content">
+		<div class="row g-0 text-center">
+			<h2>CÂU HỎI THƯỜNG GẶP KHI MUA SẮM
+				TẠI COOLMATE</h2>
+		</div>
+		<br>
+
+	</div>
+</div>
+<div class="container" id="main-content">
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Bao lâu từ lúc đặt hàng thì tôi có thể nhận được hàng?</h4>
+		</div>
+		<div class="answer">Nếu ở nội thành Hà Nội và Hồ Chí Minh,
+			khách hàng sẽ được nhận hàng trong vòng 24h kể từ khi có cuộc gọi
+			hoặc tin nhắn xác nhận trừ trường hợp đơn chưa đủ tồn kho Coolmate
+			sẽ gửi đi từ kho vận hành khác tỉnh thì thời gian sẽ là 2-3 ngày.
+
+			Nếu ở tỉnh khác, khách hàng sẽ nhận được hàng trong 2-3 ngày.</div>
+	</div>
+
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Làm thế nào để tôi có thể theo dõi đơn hàng ?</h4>
+		</div>
+		<div class="answer">Khách hàng có thể inbox vào fanpage
+			Coolmate với thông tin mã đơn hàng hoặc số điện thoại đặt hàng, chăm
+			sóc khách hàng sẽ gửi đến khách hàng mã vận đơn trong thời gian sớm
+			nhất.</div>
+	</div>
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Khung giờ giao hàng của Coolmate?</h4>
+		</div>
+		<div class="answer">Coolmate giao giờ hành chính, một số khu
+			vực có thể hỗ trợ giao tối cho khách hàng. Coolmate không cam kết có
+			thể hỗ trợ các trường hợp giao tối 100% tuy nhiên Coolmate chắc chắn
+			sẽ làm mọi cách có thể hỗ trợ cho khách hàng.</div>
+	</div>
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Các hình thức thanh toán khi tôi mua hàng trực tiếp là gì?
+			</h4>
+		</div>
+		<div class="answer">Cũng giống như mua hàng online khách hàng
+			mua hàng tại kho có 2 hình thức để thanh toán đơn hàng: tiền mặt
+			hoặc chuyển khoản ngân hàng. Coolmate chưa áp dụng hình thức quẹt
+			thẻ.</div>
+	</div>
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Coolmate có cửa hàng không ?</h4>
+		</div>
+		<div class="answer">Hiện tại Coolmate không có cửa hàng.
+			Coolmate có 2 Hub vận hành và có hỗ trợ khách hàng mua trực tiếp tại
+			Hub để có những trải nghiệm thực tế nhất</div>
+	</div>
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Chính sách giá được áp dụng như thế nào khi tôi mua trực
+				tiếp ?</h4>
+		</div>
+		<div class="answer">Mọi đơn hàng của khách hàng đều được tính
+			giá như giá trên website. Khách hàng yên tâm, các mã giảm giá chương
+			trình quà tặng,... vẫn được hỗ trợ như khi đặt online.</div>
+	</div>
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Thế nào là đơn hàng 2 chiều?</h4>
+		</div>
+		<div class="answer">Đơn hàng 2 chiều điển hình ở đơn đổi hàng ở
+			Coolmate, khách hàng sẽ nhận hàng mới và đồng thời gửi hàng đổi cho
+			bưu tá giao hàng.</div>
+	</div>
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Tôi đổi hàng tại kho có tính ship không ?</h4>
+		</div>
+		<div class="answer">Không. Coolmate luôn hỗ trợ khách hàng với
+			trải nghiệm tốt nhất, khách hàng có thể báo với Coolmate về tình
+			trạng đổi của đơn hàng Coolmate sẽ đóng sẵn hàng khách hàng chỉ cần
+			ghé kho và đổi hàng ngay.</div>
+	</div>
+
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Tôi muốn huỷ đơn hàng đã thanh toán trước?</h4>
+		</div>
+		<div class="answer">Hiện tại Coolmate chưa thể hoàn tiền tự
+			động cho khách hàng. Khách hàng điền thông tin ở đây hoặc inbox
+			Fanpage hoặc gọi hotline 1900272737, Coolmate sẽ hoàn lại tiền trong
+			vòng 24h sau khi nhận được thông tin.</div>
+	</div>
+
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Tôi muốn thay đổi thông tin với đơn hàng đã đặt (SĐT nhận
+				hàng, địa chỉ, hình thức thanh toán,...)</h4>
+		</div>
+		<div class="answer">
+			Khách hàng inbox vào fanpage Coolmate hoặc gọi hotline 1900 272737
+			để chăm sóc khách hàng hỗ trợ thay đổi thông tin đơn hàng của khách
+			hàng. <br> Riêng về việc thay đổi hình thức thanh toán từ COD
+			sang thanh toán trước, Coolmate sẽ gởi đến khách thông tin STK: <br>
+			Công ty TNHH Fastech Asia <br> 0691000416134 <br>
+			Vietcombank CN Tây Hà Nội <br> Ngay khi nhận được thanh toán,
+			Coolmate sẽ cập nhật lại thông tin thanh toán cho khách hàng. <br>
+		</div>
+	</div>
+
+	<div class="item-wrapper">
+		<div class="question">
+			<h4>Tôi đổi hàng tại kho có tính ship không ?</h4>
+		</div>
+		<div class="answer">Không. Coolmate luôn hỗ trợ khách hàng với
+			trải nghiệm tốt nhất, khách hàng có thể báo với Coolmate về tình
+			trạng đổi của đơn hàng Coolmate sẽ đóng sẵn hàng khách hàng chỉ cần
+			ghé kho và đổi hàng ngay.</div>
+	</div>
+</div>
+<footer th:replace="~{/layout/user/footer.html::footer-user}"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
